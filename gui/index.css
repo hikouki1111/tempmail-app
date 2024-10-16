@@ -1,0 +1,38 @@
+body {
+    font-family: "Inter", serif;
+    margin: 0;
+    background-color: #222222;
+}
+
+.app {
+    color: white;
+    font-size: calc(10px + 2vmin);
+}
+
+.centered-text {
+    text-align: center;
+}
+
+.add-account-button {
+    width: 50vh;
+    height: 10px;
+    text-align: center;
+    background-color: #282c34;
+    cursor: pointer;
+}
+
+.email-list {
+    width: 50vh;
+    min-height: calc(100vh - 10px);
+    background-color: #282c34;
+}
+
+.email-item {
+    height: calc(10px + 2vmin);
+    background-color: #282c34;
+    outline: 1px solid #222222;
+}
+
+.email-item p {
+    margin-left: 5px;
+}
