@@ -11,21 +11,16 @@
 </head>
 <body>
     <div class="app">
-        <div class="add-account-button">+ Add Account</div>
-        <div class="email-list">
+        <div class="flex-box">
+            <div id="add-account-button" onclick="onClickAddAccount()">+ Add Account</div>
+            <div id="current-account"></div>
+        </div>
+        <div class="flex-box">
+            <div id="email-list"></div>
+            <div id="mail-box"></div>
         </div>
     </div>
 
-    <script>
-        function init() {
-
-        }
-
-        function updateEmailList() {
-            
-        }
-
-        init();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -13,26 +13,79 @@ body {
     text-align: center;
 }
 
-.add-account-button {
-    width: 50vh;
-    height: 10px;
-    text-align: center;
-    background-color: #282c34;
+.flex-box {
+    display: flex;
+    margin: 0;
+}
+
+#add-account-button {
+    max-width: 40vw;
+    min-width: 40vw;
     cursor: pointer;
 }
 
-.email-list {
-    width: 50vh;
+#current-account {
+    width: 60vw;
+}
+
+#email-list {
+    min-width: 40vw;
     min-height: calc(100vh - 10px);
     background-color: #282c34;
+    margin: 0;
+}
+
+#mail-box {
+    min-width: 60vw;
+    min-height: calc(100vh - 10px);
+    background-color: #444a57;
+    margin: 0;
+}
+
+#mail-body {
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: #d9a832;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.mail {
+    cursor: pointer;
+    border-bottom: 1px solid #ffffff;
+}
+
+.mail p {
+    min-width: 30vw;
+    height: 1.2em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    align-items: center;
+    margin-left: 5px;
 }
 
 .email-item {
-    height: calc(10px + 2vmin);
-    background-color: #282c34;
-    outline: 1px solid #222222;
+    display: flex;
+    border-bottom: 1px solid #ffffff;
 }
 
 .email-item p {
-    margin-left: 5px;
+    cursor: pointer;
+    width: 30vw;
+    height: 1.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items: center;
+}
+
+.clickable-icon {
+    cursor: pointer;
+    width: calc(10px + 2vmin);
+    height: auto;
+    margin-left: 10px;
 }

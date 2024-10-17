@@ -4,7 +4,7 @@ go 1.23.1
 
 require (
 	github.com/hikouki1111/lorca-fix v1.0.0
-	github.com/hikouki1111/tempmail-wrapper v1.0.0
+	github.com/hikouki1111/tempmail-wrapper v1.0.3
 )
 
 require (
