@@ -83,67 +83,65 @@ async function onClickAddAccount() {
 
 async function updateMailbox() {
     const mailbox = await getMailbox(currentAccount);
-    if (mailbox) {
-        const mailboxElement = document.getElementById("mail-box");
-        mailboxElement.innerHTML = "";
-        mailbox.forEach(mail => {
-            const mailJson = JSON.parse(mail);
-            const subject = "Subject: " + mailJson.Subject;
-            const from = "From " + mailJson.From;
+    const mailboxElement = document.getElementById("mail-box");
+    mailboxElement.innerHTML = "";
+    mailbox.forEach(mail => {
+        const mailJson = JSON.parse(mail);
+        const subject = "Subject: " + mailJson.Subject;
+        const from = "From " + mailJson.From;
 
-            const mailElement = document.createElement("div");
-            mailElement.classList.add("mail");
-            mailElement.addEventListener("click", async () => {
-                const mailBody =  document.createElement("div");
-                mailBody.id = "mail-body";
-                mailBody.innerHTML = "";
+        const mailElement = document.createElement("div");
+        mailElement.classList.add("mail");
+        mailElement.addEventListener("click", async () => {
+            const mailBody =  document.createElement("div");
+            mailBody.id = "mail-body";
+            mailBody.innerHTML = "";
 
-                const mailBodySubject = document.createElement("p");
-                mailBodySubject.innerText = subject;
-                mailBody.appendChild(mailBodySubject)
-                const mailBodyFrom = document.createElement("p");
-                mailBodyFrom.innerText = from;
-                mailBody.appendChild(mailBodyFrom);
-                mailBody.innerHTML += mailJson.BodyHTML;
+            const mailBodySubject = document.createElement("p");
+            mailBodySubject.innerText = subject;
+            mailBody.appendChild(mailBodySubject)
+            const mailBodyFrom = document.createElement("p");
+            mailBodyFrom.innerText = from;
+            mailBody.appendChild(mailBodyFrom);
+            mailBody.innerHTML += mailJson.BodyHTML;
 
-                if (mailJson.Attachments.length !== 0) {
-                    const attachmentsJson = await getAttachments(currentAccount, mailJson.ID);
-                    const attachments = JSON.parse(attachmentsJson);
-                    if (Array.isArray(attachments)) {
-                        attachments.forEach(a => {
-                            const linkElement = document.createElement("a");
-                            linkElement.innerText = "Download " + a.Name;
-                            linkElement.href = a.URL;
-                            mailBody.appendChild(linkElement);
-                            mailBody.appendChild(document.createElement("br"));
-                        });
-                    }
+            if (mailJson.Attachments.length !== 0) {
+                const attachmentsJson = await getAttachments(currentAccount, mailJson.ID);
+                const attachments = JSON.parse(attachmentsJson);
+                if (Array.isArray(attachments)) {
+                    attachments.forEach(a => {
+                        const linkElement = document.createElement("a");
+                        linkElement.innerText = "Download " + a.Name;
+                        linkElement.href = a.URL;
+                        mailBody.appendChild(linkElement);
+                        mailBody.appendChild(document.createElement("br"));
+                    });
                 }
+            }
 
-                const closeButton = document.createElement("img");
-                closeButton.src = "assets/close.svg";
-                closeButton.classList.add("clickable-icon");
-                closeButton.addEventListener("click", () => {
-                    const mailBodyElement = document.getElementById("mail-body");
-                    mailBodyElement.remove();
-                });
-                closeButton.style.position = "fixed";
-                closeButton.style.top = "0";
-                closeButton.style.left = "0";
+            const closeButton = document.createElement("img");
+            closeButton.src = "assets/close.svg";
+            closeButton.classList.add("clickable-icon");
+            closeButton.addEventListener("click", () => {
+                const mailBodyElement = document.getElementById("mail-body");
+                mailBodyElement.remove();
+            });
+            closeButton.style.position = "fixed";
+            closeButton.style.top = "0";
+            closeButton.style.left = "0";
 
-                mailBody.appendChild(closeButton);
-                document.body.appendChild(mailBody);
-            })
-            const mailSubject = document.createElement("p");
-            mailSubject.innerText = "Subject: " + mailJson.Subject;
-            mailElement.appendChild(mailSubject);
+            mailBody.appendChild(closeButton);
+            document.body.appendChild(mailBody);
+        })
+        const mailSubject = document.createElement("p");
+        mailSubject.innerText = "Subject: " + mailJson.Subject;
+        mailElement.appendChild(mailSubject);
 
-            const mailFrom = document.createElement("p");
-            mailFrom.innerText = "From " + mailJson.From;
-            mailElement.appendChild(mailFrom);
-            mailboxElement.appendChild(mailElement);
-        });
-    }
+        const mailFrom = document.createElement("p");
+        mailFrom.innerText = "From " + mailJson.From;
+        mailElement.appendChild(mailFrom);
+        mailboxElement.appendChild(mailElement);
+    });
 }
 
 init();
