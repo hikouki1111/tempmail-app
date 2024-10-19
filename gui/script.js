@@ -103,7 +103,11 @@ async function updateMailbox() {
             const mailBodyFrom = document.createElement("p");
             mailBodyFrom.innerText = from;
             mailBody.appendChild(mailBodyFrom);
-            mailBody.innerHTML += mailJson.BodyHTML;
+            if (mailJson.BodyText == "") {
+                mailBody.innerHTML += mailJson.BodyHTML;
+            } else {
+                mailBody.innerHTML += mailJson.BodyText;
+            }
 
             if (mailJson.Attachments.length !== 0) {
                 const attachmentsJson = await getAttachments(currentAccount, mailJson.ID);
